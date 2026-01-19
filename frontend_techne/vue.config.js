@@ -1,5 +1,4 @@
+// frontend_techne/vue.config.js
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/Techne-Fixer/' // The repository name, including leading and trailing slashes
-    : '/'
+  publicPath: '/' // Vercel deploys to the root of the domain/subdomain
 }
