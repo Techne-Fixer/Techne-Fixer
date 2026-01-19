@@ -4,12 +4,9 @@ name: Deploy Vue.js Frontend to GitHub Pages
 on:
   push:
     branches:
-      - main # Deploy when changes are pushed to the main branch
-
-  # Allows you to run this workflow manually from the Actions tab
+      - main
   workflow_dispatch:
 
-# Sets permissions needed to deploy to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -19,11 +16,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    # --- ADD THIS ENVIRONMENT BLOCK ---
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    # --- END ADDITION ---
 
     steps:
       - name: Checkout code
@@ -32,7 +27,6 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-<<<<<<< HEAD
           node-version: '20'
 
       - name: Install frontend dependencies
@@ -42,19 +36,8 @@ jobs:
       - name: Build Vue.js application
         run: npm run build
         working-directory: frontend_techne
-=======
-          node-version: '20' # Your package.json allows Node 20, so this is good.
-
-      # --- Corrected Steps ---
-      - name: Install frontend dependencies
-        run: npm install
-        working-directory: frontend_techne # Execute npm install directly in frontend_techne
-
-      - name: Build Vue.js application
-        run: npm run build
-        working-directory: frontend_techne # Execute npm run build directly in frontend_techne
-      # --- End Corrected Steps ---
->>>>>>> 2606b13378804beb9166332c0e921f4afec45cbb
+        env:
+          NODE_ENV: production  # ADD THIS LINE
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -62,12 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-<<<<<<< HEAD
           path: 'frontend_techne/dist'
-=======
-          # This path is relative to the repository root (where actions/checkout@v4 placed everything)
-          path: 'frontend_techne/dist' # This should correctly point to the built 'dist' folder
->>>>>>> 2606b13378804beb9166332c0e921f4afec45cbb
 
       - name: Deploy to GitHub Pages
         id: deployment
