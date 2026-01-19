@@ -19,6 +19,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    # --- ADD THIS ENVIRONMENT BLOCK ---
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # --- END ADDITION ---
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,17 +32,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Your package.json allows Node 20, so this is good.
+          node-version: '20'
 
-      # --- Corrected Steps ---
       - name: Install frontend dependencies
         run: npm install
-        working-directory: frontend_techne # Execute npm install directly in frontend_techne
+        working-directory: frontend_techne
 
       - name: Build Vue.js application
         run: npm run build
-        working-directory: frontend_techne # Execute npm run build directly in frontend_techne
-      # --- End Corrected Steps ---
+        working-directory: frontend_techne
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -44,8 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This path is relative to the repository root (where actions/checkout@v4 placed everything)
-          path: 'frontend_techne/dist' # This should correctly point to the built 'dist' folder
+          path: 'frontend_techne/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
