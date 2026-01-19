@@ -1,0 +1,55 @@
+# .github/workflows/deploy.yml
+name: Deploy Vue.js Frontend to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Deploy when changes are pushed to the main branch
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions needed to deploy to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use your project's Node.js version, e.g., '18', '20'
+
+      - name: Navigate to frontend directory
+        run: cd frontend
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install # Or yarn install if you use Yarn
+
+      - name: Build Vue.js application
+        run: |
+          cd frontend
+          npm run build # This command typically creates a 'dist' folder inside 'frontend'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload the 'dist' directory from your frontend folder
+          path: 'frontend/dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
