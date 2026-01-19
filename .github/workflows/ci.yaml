@@ -26,23 +26,23 @@ jobs:
           node-version: '22' # IMPORTANT: Use the Node.js version your Vue project uses
 
       - name: Navigate to frontend directory
-        run: cd frontend
+        run: cd frontend_techne
 
       - name: Install frontend dependencies
         run: |
-          cd frontend
+          cd frontend_techne
           npm install # Or yarn install if you use Yarn
 
       - name: Run frontend linting
         # Replace 'npm run lint' with your actual lint command from frontend/package.json
         # If you don't have one, create it or remove this step temporarily.
         run: |
-          cd frontend
+          cd frontend_techne
           npm run lint || echo "Lint command not found or linting issues." # Example, adjust as needed
 
       - name: Run frontend unit tests
         # Replace 'npm run test:unit' with your actual test command from frontend/package.json
         # If you don't have one, create it or remove this step temporarily.
         run: |
-          cd frontend
+          cd frontend_techne
           npm run test:unit || echo "Test command not found or tests failed." # Example, adjust as needed

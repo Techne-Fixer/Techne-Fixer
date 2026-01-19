@@ -29,16 +29,16 @@ jobs:
           node-version: '20' # Use your project's Node.js version, e.g., '18', '20'
 
       - name: Navigate to frontend directory
-        run: cd frontend
+        run: cd frontend_techne
 
       - name: Install dependencies
         run: |
-          cd frontend
+          cd frontend_techne
           npm install # Or yarn install if you use Yarn
 
       - name: Build Vue.js application
         run: |
-          cd frontend
+          cd frontend_techne
           npm run build # This command typically creates a 'dist' folder inside 'frontend'
 
       - name: Setup Pages
@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload the 'dist' directory from your frontend folder
-          path: 'frontend/dist'
+          path: 'frontend_techne/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
