@@ -13,7 +13,7 @@ on:
       - develop # If you use a develop branch
 
 jobs:
-  build-lint-test-frontend:
+  build-lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # IMPORTANT: Use the Node.js version your Vue project uses
+          node-version: '22' # IMPORTANT: Use the Node.js version your Vue project uses
 
       - name: Navigate to frontend directory
         run: cd frontend
