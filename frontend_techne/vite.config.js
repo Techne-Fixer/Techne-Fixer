@@ -4,14 +4,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  // --- ADD THIS BASE PROPERTY ---
-  base: process.env.NODE_ENV === 'production'
-    ? '/Techne-Fixer/' // This MUST match your GitHub repository name including leading and trailing slashes
-    : '/',
-  // --- END ADDITION ---
-
+  base: '/Techne-Fixer/', // Simply always use this for production builds
+  
   plugins: [
     vue(),
     vueDevTools(),
