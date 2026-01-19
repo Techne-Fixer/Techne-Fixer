@@ -13,7 +13,7 @@ on:
       - develop # If you use a develop branch
 
 jobs:
-  build-lint:
+  build-and-lint:
     runs-on: ubuntu-latest
 
     steps:
