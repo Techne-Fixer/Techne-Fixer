@@ -1,0 +1,25 @@
+name: Basic CI Check
+
+on:
+  push:
+    branches:
+      - main
+      - develop # If you use a develop branch
+      - feature/* # Run on feature branches too
+  pull_request:
+    branches:
+      - main
+      - develop # If you use a develop branch
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest # Or windows-latest if your project requires it
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show Node.js version (example step)
+        run: node -v # Replace with a relevant command for your project (e.g., npm install, npm test, linting)
+
+      - name: Simple linting check (example step)
+        run: echo "Linting check passed (placeholder)" # Replace with actual linting command like `npm run lint` or `eslint .`
