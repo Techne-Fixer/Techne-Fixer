@@ -26,20 +26,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use your project's Node.js version, e.g., '18', '20'
+          node-version: '20' # Your package.json allows Node 20, so this is good.
 
-      - name: Navigate to frontend directory
-        run: cd frontend_techne
-
-      - name: Install dependencies
-        run: |
-          cd frontend_techne
-          npm install # Or yarn install if you use Yarn
+      # --- Corrected Steps ---
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: frontend_techne # Execute npm install directly in frontend_techne
 
       - name: Build Vue.js application
-        run: |
-          cd frontend_techne
-          npm run build # This command typically creates a 'dist' folder inside 'frontend'
+        run: npm run build
+        working-directory: frontend_techne # Execute npm run build directly in frontend_techne
+      # --- End Corrected Steps ---
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -47,8 +44,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the 'dist' directory from your frontend folder
-          path: 'frontend_techne/dist'
+          # This path is relative to the repository root (where actions/checkout@v4 placed everything)
+          path: 'frontend_techne/dist' # This should correctly point to the built 'dist' folder
 
       - name: Deploy to GitHub Pages
         id: deployment
