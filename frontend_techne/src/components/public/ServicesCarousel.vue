@@ -212,7 +212,7 @@ onUnmounted(() => {
 
 <style scoped>
 .services-section {
-  background: #ffffff;
+  background: #f8f9fa;
   padding: 5rem 0;
   position: relative;
   width: 100%;
@@ -276,6 +276,9 @@ onUnmounted(() => {
   align-items: center;
   justify-content: flex-start;
   padding: 1.5rem;
+  min-height: 280px;
+  max-height: 350px;
+  overflow: hidden;
 }
 
 .icon-wrapper {
@@ -304,6 +307,7 @@ onUnmounted(() => {
   color: #1a1a1a;
   margin-bottom: 0.75rem;
   word-wrap: break-word;
+  flex-shrink: 0;
 }
 
 .card-content p {
@@ -311,6 +315,12 @@ onUnmounted(() => {
   color: #666;
   line-height: 1.6;
   word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  flex: 1;
 }
 
 .carousel-btn {
@@ -419,8 +429,11 @@ onUnmounted(() => {
     padding: 0 0.5rem;
   }
   
+  @media (max-width: 768px) {
   .card-content {
     padding: 1.5rem 1rem;
+    min-height: 240px;
+    max-height: 300px;
   }
   
   .icon-wrapper {
@@ -439,8 +452,8 @@ onUnmounted(() => {
   }
   
   .card-content p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    -webkit-line-clamp: 2;
+    font-size: 0.85rem;
   }
 }
 
@@ -490,5 +503,6 @@ onUnmounted(() => {
   .card-content p {
     font-size: 0.85rem;
   }
+}
 }
 </style>
