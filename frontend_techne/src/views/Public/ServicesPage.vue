@@ -9,8 +9,6 @@
 <script setup>
 import HeroSection from '@/components/public/HeroSection.vue'; // <--- Import the new component
 import ServiceSection from '@/components/public/services/ServicesSection.vue'; // <--- Import the new component
-import PortfolioSection from '@/components/public/PortfolioSection.vue'; // <--- Import the new component
-import TestimonialsSection from '@/components/public/TestimonialsSection.vue'; // <--- Import the new component
 import ContactUsSection from '@/components/public/ContactUsSection.vue'; // <--- Import the new component
 </script>
 

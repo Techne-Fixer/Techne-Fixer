@@ -10,11 +10,36 @@ import PublicLayout from '@/layouts/PublicLayout.vue';
 </script>
 
 <style>
-/* Global styles can go here or in src/styles/main.css */
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Ensure router-view takes full width */
+.router-view {
+  width: 100%;
 }
 </style>
