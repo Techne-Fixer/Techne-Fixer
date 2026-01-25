@@ -16,4 +16,31 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+   server: {
+    host: true, // Listen on all addresses including LAN
+    port: 5173, // Default Vite port
+    strictPort: false,
+    allowedHosts: [
+      '.ngrok-free.app',
+      '.ngrok-free.dev',
+      '.ngrok.io',
+      'localhost',
+    ],
+    // If you want to access via network
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+    }
+  },
+  // Preview server config (for production preview)
+  preview: {
+    host: true,
+    port: 4173,
+    allowedHosts: [
+      '.ngrok-free.app',
+      '.ngrok-free.dev',
+      '.ngrok.io',
+      'localhost',
+    ]
+  }
 })

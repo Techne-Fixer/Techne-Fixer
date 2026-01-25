@@ -43,6 +43,7 @@ import characterImage from '@/assets/images/character.png';
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  width: 100%; /* Prevent overflow */
 }
 
 /* Floating particles */
@@ -144,7 +145,7 @@ import characterImage from '@/assets/images/character.png';
   align-items: center;
   padding: 3rem 0;
   position: relative;
-  z-index: 1;
+  width: 100%; /* Prevent overflow */
 }
 
 /* Content Wrapper for Hero Section (Constrained Width) */
@@ -157,6 +158,7 @@ import characterImage from '@/assets/images/character.png';
   justify-content: space-between;
   gap: 3rem;
   width: 100%;
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .hero-text-content {
@@ -172,6 +174,7 @@ import characterImage from '@/assets/images/character.png';
   margin-bottom: 0.5em;
   font-weight: 800;
   color: #ffffff;
+  word-wrap: break-word; /* Prevent text overflow */
 }
 
 .hero-text-content p {
@@ -179,6 +182,7 @@ import characterImage from '@/assets/images/character.png';
   line-height: 1.5;
   margin-bottom: 2em;
   color: rgba(255, 255, 255, 0.85);
+  word-wrap: break-word; /* Prevent text overflow */
 }
 
 .hero-button {
@@ -219,6 +223,7 @@ import characterImage from '@/assets/images/character.png';
   align-items: center;
   position: relative;
   overflow: hidden;
+  max-width: 100%; /* Prevent overflow */
 }
 
 .hero-character-image {
@@ -242,6 +247,7 @@ import characterImage from '@/assets/images/character.png';
     flex-direction: column;
     text-align: center;
     gap: 2rem;
+    padding: 0 1.5rem;
   }
   
   .hero-text-content {
@@ -265,6 +271,29 @@ import characterImage from '@/assets/images/character.png';
   
   .hero-text-content p {
     font-size: 1em;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-content-wrapper {
+    padding: 0 1rem;
+  }
+  
+  .hero-text-content h1 {
+    font-size: 2em;
+  }
+  
+  .hero-text-content p {
+    font-size: 0.95em;
+  }
+  
+  .hero-button {
+    padding: 12px 24px;
+    font-size: 1em;
+  }
+  
+  .hero-character-image {
+    max-height: 250px;
   }
 }
 </style>
