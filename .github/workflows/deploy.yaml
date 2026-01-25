@@ -1,0 +1,68 @@
+name: Deploy Vue.js Frontend to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: frontend_techne
+
+      - name: Build Vue.js application
+        run: npm run build
+        working-directory: frontend_techne
+        env:
+          NODE_ENV: production
+
+      - name: Add .nojekyll file
+        run: touch frontend_techne/dist/.nojekyll
+
+      - name: Debug - List built files
+        run: |
+          echo "=== Contents of frontend_techne/dist ==="
+          ls -laR frontend_techne/dist
+          echo ""
+          echo "=== Checking if index.html exists ==="
+          test -f frontend_techne/dist/index.html && echo "✓ index.html exists" || echo "✗ index.html NOT found"
+          echo ""
+          echo "=== First 20 lines of index.html ==="
+          head -n 20 frontend_techne/dist/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './frontend_techne/dist'  # Added ./ for explicit relative path
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
+      - name: Output deployment URL
+        run: echo "Deployed to ${{ steps.deployment.outputs.page_url }}"
