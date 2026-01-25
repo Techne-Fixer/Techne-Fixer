@@ -3,8 +3,8 @@
   <section class="portfolio-section">
     <div class="portfolio-container">
       <div class="section-header">
-        <h2>Our Portfolio</h2>
-        <p>Successful projects delivered to clients worldwide</p>
+        <h2>Our Work</h2>
+        <p>Successful repairs and installations completed for satisfied clients</p>
       </div>
 
       <div class="view-toggle">
@@ -36,7 +36,7 @@
       <div :class="['portfolio-table', viewMode]">
         <div class="table-header" v-if="viewMode === 'list'">
           <div class="header-cell number">#</div>
-          <div class="header-cell project">PROJECT NAME</div>
+          <div class="header-cell project">PROJECT</div>
           <div class="header-cell services">SERVICES</div>
         </div>
 
@@ -180,52 +180,61 @@ const touchEndX = ref(0);
 
 const projects = [
   {
-    title: 'Service Marketplace Modernization',
-    description: 'A content writing agency based in New York, helping brands globally by creating content that resonates with audiences, engages readers, and delivers measurable results for businesses.',
+    title: 'Corporate Office CCTV Installation',
+    description: 'Complete security system installation for a 5-floor office building in Makati, including 24 HD cameras with cloud storage and remote monitoring capabilities.',
     services: [
-      { name: 'Staff Augmentation', color: 'yellow' },
-      { name: 'Web Development', color: 'red' }
+      { name: 'CCTV Installation', color: 'yellow' },
+      { name: 'Network Setup', color: 'blue' }
     ]
   },
   {
-    title: 'Staff Augmentation for Medical Tech',
-    description: 'A Silicon Valley-based startup specializing in medical billing automation in the U.S.',
+    title: 'Medical Clinic Equipment Maintenance',
+    description: 'Quarterly maintenance and calibration service for diagnostic equipment at a multi-specialty clinic in Quezon City.',
     services: [
-      { name: 'Staff Augmentation', color: 'yellow' },
-      { name: 'Web Development', color: 'red' }
+      { name: 'Medical Equipment', color: 'red' },
+      { name: 'Preventive Maintenance', color: 'blue' }
     ]
   },
   {
-    title: 'Team Expansion for Market Research Industry',
-    description: 'A platform from New York that rewards users by taking online surveys.',
+    title: 'Residential Solar Panel Installation',
+    description: 'Installation of 10kW solar panel system for a residential property in Alabang, providing clean energy and reducing electricity costs by 70%.',
     services: [
-      { name: 'Web Development', color: 'red' },
-      { name: 'Staff Augmentation', color: 'yellow' }
+      { name: 'Solar Panel', color: 'yellow' },
+      { name: 'Installation', color: 'blue' },
+      { name: 'Energy Audit', color: 'red' }
     ]
   },
   {
-    title: 'Web Development for Drone Systems',
-    description: 'Geospatial intelligence technology based in Germany for the industrial sector.',
+    title: 'Laundromat Washing Machine Repair',
+    description: 'Complete overhaul and repair of 8 commercial washing machines for a laundromat business, including motor replacement and drum balancing.',
     services: [
-      { name: 'Web Development', color: 'red' },
-      { name: 'CI/CD Implementation', color: 'blue' }
+      { name: 'Washing Machine', color: 'blue' },
+      { name: 'Commercial Repair', color: 'yellow' }
     ]
   },
   {
-    title: 'Staff Augmentation for Trucking Industry',
-    description: 'A mobile app solution for truckers in the USA.',
+    title: 'IT Company Printer Fleet Maintenance',
+    description: 'Monthly maintenance contract for 30+ office printers across 3 locations, ensuring minimal downtime and optimal performance.',
     services: [
-      { name: 'Staff Augmentation', color: 'yellow' },
-      { name: 'Mobile App', color: 'red' },
-      { name: 'Mobile Product Design', color: 'blue' }
+      { name: 'Printer Repair', color: 'red' },
+      { name: 'Fleet Management', color: 'yellow' },
+      { name: 'Parts Replacement', color: 'blue' }
     ]
   },
   {
-    title: 'B2B Staff Expansion for Digital Agency',
-    description: 'A trusted partner for their code and no-code solutions in Germany.',
+    title: 'Laptop Repair & Upgrade for SME',
+    description: 'Bulk repair and upgrade service for 25 company laptops, including SSD upgrades, RAM expansion, and OS optimization for improved productivity.',
     services: [
-      { name: 'Staff Augmentation', color: 'yellow' },
-      { name: 'Web Development', color: 'red' }
+      { name: 'Laptop Repair', color: 'yellow' },
+      { name: 'Hardware Upgrade', color: 'red' }
+    ]
+  },
+  {
+    title: 'Cellphone Repair Center Partnership',
+    description: 'Ongoing partnership providing screen replacement, battery services, and software troubleshooting for a phone retail chain.',
+    services: [
+      { name: 'Cellphone Repair', color: 'blue' },
+      { name: 'Bulk Service', color: 'yellow' }
     ]
   }
 ];
@@ -517,6 +526,8 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-height: 240px;
+  max-height: 320px;
 }
 
 .project-row.grid:hover {
@@ -527,9 +538,34 @@ onUnmounted(() => {
 
 .project-row.grid .project-info {
   flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem;
 }
 
-/* Mobile Carousel Structure (like Services) */
+.project-row.grid .project-info::-webkit-scrollbar {
+  width: 4px;
+}
+
+.project-row.grid .project-info::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.project-row.grid .project-info::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 10px;
+}
+
+.project-row.grid .project-info::-webkit-scrollbar-thumb:hover {
+  background: #00dd77;
+}
+
+.project-row.grid .project-services {
+  flex-shrink: 0;
+}
+
+/* Mobile Carousel Structure */
 .mobile-carousel-wrapper {
   display: flex;
   align-items: center;
@@ -723,19 +759,12 @@ onUnmounted(() => {
   .project-card-mobile .project-row.grid {
     padding: 1.75rem 1.25rem;
     min-height: 320px;
-    max-height: 420px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
+    max-height: 400px;
   }
   
   .project-card-mobile .project-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 0.25rem;
   }
   
   .project-card-mobile .project-info h3 {
@@ -748,12 +777,6 @@ onUnmounted(() => {
   .project-card-mobile .project-info p {
     font-size: 0.875rem;
     line-height: 1.5;
-    flex: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
   }
   
   .project-card-mobile .project-services {
@@ -855,7 +878,7 @@ onUnmounted(() => {
   .project-card-mobile .project-row.grid {
     padding: 1.5rem 1rem;
     min-height: 300px;
-    max-height: 400px;
+    max-height: 380px;
   }
   
   .project-card-mobile .project-info h3 {
@@ -864,7 +887,6 @@ onUnmounted(() => {
   
   .project-card-mobile .project-info p {
     font-size: 0.825rem;
-    -webkit-line-clamp: 4;
   }
   
   .service-badge {
