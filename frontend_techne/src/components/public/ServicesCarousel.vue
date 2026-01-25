@@ -526,4 +526,52 @@ onUnmounted(() => {
     font-size: 0.85rem;
   }
 }
+
+@media (max-width: 480px) {
+  .services-section {
+    padding: 2.5rem 0;
+  }
+  
+  .services-container {
+    padding: 0 0.75rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .carousel-wrapper {
+    gap: 0.25rem;
+  }
+  
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .service-card {
+    padding: 0 0.25rem;
+  }
+  
+  .card-content {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .service-icon {
+    font-size: 1.75rem;
+  }
+  
+  .card-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.85rem;
+  }
+}
 </style>
