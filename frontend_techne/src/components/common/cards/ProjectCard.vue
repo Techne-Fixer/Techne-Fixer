@@ -137,6 +137,9 @@ const getIconPath = (category) => {
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-card:hover {
@@ -149,6 +152,7 @@ const getIconPath = (category) => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  flex: 1;
 }
 
 /* LEFT COLUMN */
