@@ -4,23 +4,33 @@
     <div class="services-container">
       <div class="section-header">
         <h2>Our Services</h2>
-        <p>Comprehensive solutions tailored to your needs</p>
+        <p>Expert repair solutions for all your electronic needs</p>
       </div>
 
       <div class="carousel-wrapper">
-        <button class="carousel-btn prev" @click="prevSlide" aria-label="Previous">
+        <button 
+          class="carousel-btn prev" 
+          @click="prevSlide" 
+          :disabled="currentIndex === 0"
+          aria-label="Previous">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
         <div class="carousel-track-container">
-          <div class="carousel-track" :style="{ transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)` }">
+          <div 
+            class="carousel-track" 
+            :style="trackStyle"
+            @touchstart="handleTouchStart"
+            @touchmove="handleTouchMove"
+            @touchend="handleTouchEnd"
+          >
             <div 
               v-for="(service, index) in services" 
               :key="index"
               class="service-card"
-              :style="{ flex: `0 0 ${100 / visibleSlides}%` }"
+              :style="cardStyle"
             >
               <BaseCard variant="elevated" hoverable padding="large">
                 <div class="card-content">
@@ -35,7 +45,11 @@
           </div>
         </div>
 
-        <button class="carousel-btn next" @click="nextSlide" aria-label="Next">
+        <button 
+          class="carousel-btn next" 
+          @click="nextSlide"
+          :disabled="currentIndex >= maxIndex"
+          aria-label="Next">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -62,52 +76,80 @@ import BaseCard from '@/components/common/cards/BaseCard.vue';
 
 const currentIndex = ref(0);
 const visibleSlides = ref(3);
+const touchStartX = ref(0);
+const touchEndX = ref(0);
 
 const services = [
   {
     icon: '💻',
-    title: 'Web Development',
-    description: 'Custom web applications built with modern frameworks and best practices',
+    title: 'Laptop Repair',
+    description: 'Professional laptop repair services including hardware replacement, software troubleshooting, and performance optimization',
     color: '#ff4757'
   },
   {
-    icon: '📱',
-    title: 'Mobile Development',
-    description: 'Native and cross-platform mobile apps for iOS and Android',
+    icon: '🖨️',
+    title: 'Printer Repair',
+    description: 'Complete printer repair and maintenance for all brands - fixing jams, print quality issues, and connectivity problems',
     color: '#ffd93d'
   },
   {
-    icon: '🎨',
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces that users love',
+    icon: '🌀',
+    title: 'Washing Machine Repair',
+    description: 'Expert repair services for all washing machine types - fixing leaks, drainage issues, and motor problems',
     color: '#00ff88'
   },
   {
-    icon: '☁️',
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud infrastructure and deployment services',
+    icon: '📱',
+    title: 'Cellphone Repair',
+    description: 'Fast and reliable cellphone repair - screen replacement, battery issues, charging problems, and software fixes',
     color: '#3742fa'
   },
   {
-    icon: '🔧',
-    title: 'Maintenance & Support',
-    description: '24/7 technical support and ongoing maintenance',
+    icon: '📹',
+    title: 'CCTV Installation & Repair',
+    description: 'Professional CCTV installation, maintenance, and repair services for homes and businesses',
     color: '#ff6b9d'
   },
   {
-    icon: '🚀',
-    title: 'DevOps',
-    description: 'CI/CD pipelines and automated deployment solutions',
+    icon: '☀️',
+    title: 'Solar Panel Services',
+    description: 'Solar panel installation, maintenance, and repair - ensuring optimal energy efficiency and performance',
     color: '#c56cf0'
+  },
+  {
+    icon: '🏥',
+    title: 'Medical Equipment Repair',
+    description: 'Certified repair and maintenance of medical clinic equipment with fast turnaround times',
+    color: '#ff9f43'
   }
 ];
 
+const maxIndex = computed(() => {
+  return Math.max(0, services.length - visibleSlides.value);
+});
+
 const totalDots = computed(() => {
-  return Math.max(1, services.length - visibleSlides.value + 1);
+  return maxIndex.value + 1;
+});
+
+const trackStyle = computed(() => {
+  const cardWidth = 100 / visibleSlides.value;
+  const offset = currentIndex.value * cardWidth;
+  return {
+    transform: `translateX(-${offset}%)`,
+    transition: 'transform 0.5s ease'
+  };
+});
+
+const cardStyle = computed(() => {
+  return {
+    flex: `0 0 ${100 / visibleSlides.value}%`,
+    maxWidth: `${100 / visibleSlides.value}%`
+  };
 });
 
 const nextSlide = () => {
-  if (currentIndex.value < services.length - visibleSlides.value) {
+  if (currentIndex.value < maxIndex.value) {
     currentIndex.value++;
   }
 };
@@ -122,6 +164,33 @@ const goToSlide = (index) => {
   currentIndex.value = index;
 };
 
+// Touch handlers for mobile swipe
+const handleTouchStart = (e) => {
+  touchStartX.value = e.touches[0].clientX;
+};
+
+const handleTouchMove = (e) => {
+  touchEndX.value = e.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+  const swipeThreshold = 50;
+  const diff = touchStartX.value - touchEndX.value;
+  
+  if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+      // Swiped left - next slide
+      nextSlide();
+    } else {
+      // Swiped right - previous slide
+      prevSlide();
+    }
+  }
+  
+  touchStartX.value = 0;
+  touchEndX.value = 0;
+};
+
 const updateVisibleSlides = () => {
   if (window.innerWidth < 768) {
     visibleSlides.value = 1;
@@ -130,9 +199,10 @@ const updateVisibleSlides = () => {
   } else {
     visibleSlides.value = 3;
   }
-  // Reset to first slide if current index is out of bounds
-  if (currentIndex.value > services.length - visibleSlides.value) {
-    currentIndex.value = Math.max(0, services.length - visibleSlides.value);
+  
+  // Ensure current index is within bounds
+  if (currentIndex.value > maxIndex.value) {
+    currentIndex.value = maxIndex.value;
   }
 };
 
@@ -148,10 +218,11 @@ onUnmounted(() => {
 
 <style scoped>
 .services-section {
-  background: #ffffff;
+  background: #f8f9fa;
   padding: 5rem 0;
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .services-container {
@@ -188,17 +259,19 @@ onUnmounted(() => {
 .carousel-track-container {
   overflow: hidden;
   flex: 1;
+  touch-action: pan-y;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease;
-  gap: 1.5rem;
+  width: 100%;
+  user-select: none;
 }
 
 .service-card {
   padding: 0 0.75rem;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 .card-content {
@@ -207,7 +280,10 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 1.5rem;
+  min-height: 320px;
+  max-height: 380px;
 }
 
 .icon-wrapper {
@@ -219,9 +295,10 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-.base-card:hover .icon-wrapper {
+.service-card:hover .icon-wrapper {
   transform: scale(1.1) rotate(5deg);
 }
 
@@ -234,12 +311,37 @@ onUnmounted(() => {
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 0.75rem;
+  word-wrap: break-word;
+  flex-shrink: 0;
 }
 
 .card-content p {
   font-size: 1rem;
   color: #666;
   line-height: 1.6;
+  word-wrap: break-word;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.card-content p::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card-content p::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.card-content p::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 10px;
+}
+
+.card-content p::-webkit-scrollbar-thumb:hover {
+  background: #00dd77;
 }
 
 .carousel-btn {
@@ -258,7 +360,7 @@ onUnmounted(() => {
   box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
 }
 
-.carousel-btn:hover {
+.carousel-btn:hover:not(:disabled) {
   background: #00dd77;
   transform: scale(1.1);
 }
@@ -266,6 +368,7 @@ onUnmounted(() => {
 .carousel-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .carousel-dots {
@@ -283,6 +386,7 @@ onUnmounted(() => {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0;
 }
 
 .dot.active {
@@ -302,14 +406,22 @@ onUnmounted(() => {
     font-size: 2rem;
   }
   
-  .carousel-track {
-    gap: 1rem;
+  .services-container {
+    padding: 0 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .services-section {
-    padding: 3rem 1rem;
+    padding: 3rem 0;
+  }
+  
+  .services-container {
+    padding: 0 1rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
   }
   
   .section-header h2 {
@@ -320,18 +432,34 @@ onUnmounted(() => {
     font-size: 1rem;
   }
   
+  .carousel-wrapper {
+    gap: 0.5rem;
+  }
+  
   .carousel-btn {
     width: 40px;
     height: 40px;
   }
   
+  .carousel-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .service-card {
+    padding: 0 0.5rem;
+  }
+  
   .card-content {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
+    min-height: 280px;
+    max-height: 340px;
   }
   
   .icon-wrapper {
     width: 60px;
     height: 60px;
+    margin-bottom: 1rem;
   }
   
   .service-icon {
@@ -340,10 +468,110 @@ onUnmounted(() => {
   
   .card-content h3 {
     font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
   
   .card-content p {
     font-size: 0.9rem;
+    padding-right: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-section {
+    padding: 2.5rem 0;
+  }
+  
+  .services-container {
+    padding: 0 0.75rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .carousel-wrapper {
+    gap: 0.25rem;
+  }
+  
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .service-card {
+    padding: 0 0.25rem;
+  }
+  
+  .card-content {
+    padding: 1.25rem 0.75rem;
+    min-height: 260px;
+    max-height: 320px;
+  }
+  
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .service-icon {
+    font-size: 1.75rem;
+  }
+  
+  .card-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-section {
+    padding: 2.5rem 0;
+  }
+  
+  .services-container {
+    padding: 0 0.75rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .carousel-wrapper {
+    gap: 0.25rem;
+  }
+  
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .service-card {
+    padding: 0 0.25rem;
+  }
+  
+  .card-content {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .service-icon {
+    font-size: 1.75rem;
+  }
+  
+  .card-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.85rem;
   }
 }
 </style>

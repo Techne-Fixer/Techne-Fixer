@@ -77,7 +77,7 @@ import logo from '@/assets/images/logo.png';
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f0f2f5;
+  background-color: #f8f9fa;
 }
 
 .public-content {
