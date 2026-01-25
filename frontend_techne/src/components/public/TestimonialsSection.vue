@@ -133,51 +133,51 @@ const touchEndX = ref(0);
 
 const testimonials = ref([
   {
-    name: 'Natalie Joy Veluz',
-    role: 'Client',
-    company: 'DesignPro',
-    initial: 'N',
-    feedback: 'An amazing tool that simplifies complex tasks. Highly recommended for professionals in the industry.',
+    name: 'Elena Reyes',
+    role: 'Business Owner',
+    company: 'Sunrise Laundromat',
+    initial: 'E',
+    feedback: 'They repaired all 8 of our washing machines in just 3 days! Our business was back up and running with minimal downtime. Professional service and fair pricing.',
     rating: 5
   },
   {
-    name: 'Natalie Joy Veluz',
-    role: 'Client',
-    company: 'TechStart',
-    initial: 'N',
-    feedback: 'Highly recommend! Super legit finished the task in 1 day',
-    rating: 5
-  },
-  {
-    name: 'Christian Francisco',
-    role: 'Client',
-    company: 'InnovateCo',
-    initial: 'C',
-    feedback: '100% Legit and professional service. Outstanding output quality and timely delivery.',
-    rating: 5
-  },
-  {
-    name: 'Maria Santos',
-    role: 'CEO',
-    company: 'Digital Solutions',
+    name: 'Marcus Tan',
+    role: 'IT Manager',
+    company: 'TechHub Solutions',
     initial: 'M',
-    feedback: 'Working with this team has been transformational for our business. Their expertise and dedication are unmatched.',
+    feedback: 'Excellent laptop repair service! They upgraded our entire fleet of 25 laptops with SSDs and extra RAM. The performance improvement is incredible.',
     rating: 5
   },
   {
-    name: 'John Rodriguez',
-    role: 'Product Manager',
-    company: 'StartupHub',
+    name: 'Dr. Ana Lim',
+    role: 'Clinic Director',
+    company: 'HealthCare Plus Clinic',
+    initial: 'A',
+    feedback: 'Reliable and certified medical equipment maintenance. They handle our diagnostic equipment with care and professionalism. Highly recommended!',
+    rating: 5
+  },
+  {
+    name: 'Roberto Cruz',
+    role: 'Facilities Manager',
+    company: 'Prime Tower Office',
+    initial: 'R',
+    feedback: 'Outstanding CCTV installation across our 5-floor building. The system works flawlessly and their after-sales support is top-notch.',
+    rating: 5
+  },
+  {
+    name: 'Jennifer Wong',
+    role: 'Homeowner',
+    company: 'Residential Client',
     initial: 'J',
-    feedback: 'Exceptional work and great communication throughout the project. Will definitely work with them again.',
+    feedback: 'Had solar panels installed at my home in Alabang. They were professional, finished on time, and my electricity bill dropped by 70%! Worth every peso.',
     rating: 5
   },
   {
-    name: 'Sarah Chen',
-    role: 'CTO',
-    company: 'CloudWorks',
-    initial: 'S',
-    feedback: 'The level of technical expertise and problem-solving skills is remarkable. Highly professional team.',
+    name: 'David Mercado',
+    role: 'Office Manager',
+    company: 'PrintWorks Inc',
+    initial: 'D',
+    feedback: 'They maintain our entire printer fleet of 30+ units. Fast response times, knowledgeable technicians, and great preventive maintenance service.',
     rating: 5
   }
 ]);

@@ -4,7 +4,7 @@
     <div class="services-container">
       <div class="section-header">
         <h2>Our Services</h2>
-        <p>Comprehensive solutions tailored to your needs</p>
+        <p>Expert repair solutions for all your electronic needs</p>
       </div>
 
       <div class="carousel-wrapper">
@@ -82,39 +82,45 @@ const touchEndX = ref(0);
 const services = [
   {
     icon: '💻',
-    title: 'Web Development',
-    description: 'Custom web applications built with modern frameworks and best practices',
+    title: 'Laptop Repair',
+    description: 'Professional laptop repair services including hardware replacement, software troubleshooting, and performance optimization',
     color: '#ff4757'
   },
   {
-    icon: '📱',
-    title: 'Mobile Development',
-    description: 'Native and cross-platform mobile apps for iOS and Android',
+    icon: '🖨️',
+    title: 'Printer Repair',
+    description: 'Complete printer repair and maintenance for all brands - fixing jams, print quality issues, and connectivity problems',
     color: '#ffd93d'
   },
   {
-    icon: '🎨',
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces that users love',
+    icon: '🌀',
+    title: 'Washing Machine Repair',
+    description: 'Expert repair services for all washing machine types - fixing leaks, drainage issues, and motor problems',
     color: '#00ff88'
   },
   {
-    icon: '☁️',
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud infrastructure and deployment services',
+    icon: '📱',
+    title: 'Cellphone Repair',
+    description: 'Fast and reliable cellphone repair - screen replacement, battery issues, charging problems, and software fixes',
     color: '#3742fa'
   },
   {
-    icon: '🔧',
-    title: 'Maintenance & Support',
-    description: '24/7 technical support and ongoing maintenance',
+    icon: '📹',
+    title: 'CCTV Installation & Repair',
+    description: 'Professional CCTV installation, maintenance, and repair services for homes and businesses',
     color: '#ff6b9d'
   },
   {
-    icon: '🚀',
-    title: 'DevOps',
-    description: 'CI/CD pipelines and automated deployment solutions',
+    icon: '☀️',
+    title: 'Solar Panel Services',
+    description: 'Solar panel installation, maintenance, and repair - ensuring optimal energy efficiency and performance',
     color: '#c56cf0'
+  },
+  {
+    icon: '🏥',
+    title: 'Medical Equipment Repair',
+    description: 'Certified repair and maintenance of medical clinic equipment with fast turnaround times',
+    color: '#ff9f43'
   }
 ];
 
@@ -276,9 +282,8 @@ onUnmounted(() => {
   align-items: center;
   justify-content: flex-start;
   padding: 1.5rem;
-  min-height: 280px;
-  max-height: 350px;
-  overflow: hidden;
+  min-height: 320px;
+  max-height: 380px;
 }
 
 .icon-wrapper {
@@ -315,12 +320,28 @@ onUnmounted(() => {
   color: #666;
   line-height: 1.6;
   word-wrap: break-word;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex: 1;
+  padding-right: 0.5rem;
+}
+
+.card-content p::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card-content p::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.card-content p::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 10px;
+}
+
+.card-content p::-webkit-scrollbar-thumb:hover {
+  background: #00dd77;
 }
 
 .carousel-btn {
@@ -429,11 +450,10 @@ onUnmounted(() => {
     padding: 0 0.5rem;
   }
   
-  @media (max-width: 768px) {
   .card-content {
     padding: 1.5rem 1rem;
-    min-height: 240px;
-    max-height: 300px;
+    min-height: 280px;
+    max-height: 340px;
   }
   
   .icon-wrapper {
@@ -452,7 +472,57 @@ onUnmounted(() => {
   }
   
   .card-content p {
-    -webkit-line-clamp: 2;
+    font-size: 0.9rem;
+    padding-right: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-section {
+    padding: 2.5rem 0;
+  }
+  
+  .services-container {
+    padding: 0 0.75rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .carousel-wrapper {
+    gap: 0.25rem;
+  }
+  
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .service-card {
+    padding: 0 0.25rem;
+  }
+  
+  .card-content {
+    padding: 1.25rem 0.75rem;
+    min-height: 260px;
+    max-height: 320px;
+  }
+  
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .service-icon {
+    font-size: 1.75rem;
+  }
+  
+  .card-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .card-content p {
     font-size: 0.85rem;
   }
 }
@@ -503,6 +573,5 @@ onUnmounted(() => {
   .card-content p {
     font-size: 0.85rem;
   }
-}
 }
 </style>

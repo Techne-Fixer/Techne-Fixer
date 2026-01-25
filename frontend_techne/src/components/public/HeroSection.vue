@@ -16,8 +16,8 @@
     <div class="hero-main-content-area">
       <div class="hero-content-wrapper">
         <div class="hero-text-content">
-          <h1>Software Outsourcing For Web & Mobile Applications</h1>
-          <p>Work with world-class developers and designers in the Philippines</p>
+          <h1>Professional Repair Services For Your Electronics & Appliances</h1>
+          <p>Expert technicians specializing in Laptops, Printers, Washing Machines, Cellphones, CCTV, Solar Panels & Medical Equipment</p>
           <button class="hero-button">
             Learn More <span class="arrow">&gt;</span>
           </button>
