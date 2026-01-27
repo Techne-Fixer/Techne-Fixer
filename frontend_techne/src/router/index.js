@@ -5,7 +5,6 @@ import Home from '@/views/Public/HomePage.vue';
 import Services from '@/views/Public/ServicesPage.vue';
 import Portfolio from '@/views/Public/PortfolioPage.vue';
 // import About from '@/views/About.vue';
-// import Contact from '@/views/Contact.vue';
 // import Login from '@/views/Login.vue';
 // import Register from '@/views/Register.vue';
 
@@ -30,11 +29,7 @@ const routes = [
 //     name: 'About',
 //     component: About
 //   },
-//   {
-//     path: '/contact',
-//     name: 'Contact',
-//     component: Contact
-//   },
+//
 //   {
 //     path: '/login',
 //     name: 'Login',

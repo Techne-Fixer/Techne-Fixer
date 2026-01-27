@@ -32,7 +32,7 @@
               class="service-card"
               :style="cardStyle"
             >
-              <BaseCard variant="elevated" hoverable padding="large">
+              <BaseCard variant="elevated" hoverable padding="none">
                 <div class="card-content">
                   <div class="icon-wrapper" :style="{ backgroundColor: service.color }">
                     <span class="service-icon">{{ service.icon }}</span>
@@ -254,6 +254,8 @@ onUnmounted(() => {
   overflow: hidden;
   flex: 1;
   touch-action: pan-y;
+  padding: 1rem 0;
+  margin: -1rem 0;
 }
 
 .carousel-track {
@@ -266,16 +268,24 @@ onUnmounted(() => {
   padding: 0 0.75rem;
   box-sizing: border-box;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card :deep(.base-card) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-content {
   text-align: center;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
 }
 
 .icon-wrapper {
@@ -311,6 +321,7 @@ onUnmounted(() => {
   color: #666;
   line-height: 1.6;
   word-wrap: break-word;
+  flex: 1;
 }
 
 .carousel-btn {
