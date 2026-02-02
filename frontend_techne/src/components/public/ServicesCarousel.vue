@@ -4,7 +4,7 @@
     <div class="services-container">
       <div class="section-header">
         <h2>Our Services</h2>
-        <p>Comprehensive solutions tailored to your needs</p>
+        <p>Expert repair solutions for all your electronic needs</p>
       </div>
 
       <div class="carousel-wrapper">
@@ -82,39 +82,45 @@ const touchEndX = ref(0);
 const services = [
   {
     icon: '💻',
-    title: 'Web Development',
-    description: 'Custom web applications built with modern frameworks and best practices',
+    title: 'Laptop Repair',
+    description: 'Professional laptop repair services including hardware replacement, software troubleshooting, and performance optimization',
     color: '#ff4757'
   },
   {
-    icon: '📱',
-    title: 'Mobile Development',
-    description: 'Native and cross-platform mobile apps for iOS and Android',
+    icon: '🖨️',
+    title: 'Printer Repair',
+    description: 'Complete printer repair and maintenance for all brands - fixing jams, print quality issues, and connectivity problems',
     color: '#ffd93d'
   },
   {
-    icon: '🎨',
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces that users love',
+    icon: '🌀',
+    title: 'Washing Machine Repair',
+    description: 'Expert repair services for all washing machine types - fixing leaks, drainage issues, and motor problems',
     color: '#00ff88'
   },
   {
-    icon: '☁️',
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud infrastructure and deployment services',
+    icon: '📱',
+    title: 'Cellphone Repair',
+    description: 'Fast and reliable cellphone repair - screen replacement, battery issues, charging problems, and software fixes',
     color: '#3742fa'
   },
   {
-    icon: '🔧',
-    title: 'Maintenance & Support',
-    description: '24/7 technical support and ongoing maintenance',
+    icon: '📹',
+    title: 'CCTV Installation & Repair',
+    description: 'Professional CCTV installation, maintenance, and repair services for homes and businesses',
     color: '#ff6b9d'
   },
   {
-    icon: '🚀',
-    title: 'DevOps',
-    description: 'CI/CD pipelines and automated deployment solutions',
+    icon: '☀️',
+    title: 'Solar Panel Services',
+    description: 'Solar panel installation, maintenance, and repair - ensuring optimal energy efficiency and performance',
     color: '#c56cf0'
+  },
+  {
+    icon: '🏥',
+    title: 'Medical Equipment Repair',
+    description: 'Certified repair and maintenance of medical clinic equipment with fast turnaround times',
+    color: '#ff9f43'
   }
 ];
 
@@ -212,7 +218,7 @@ onUnmounted(() => {
 
 <style scoped>
 .services-section {
-  background: #ffffff;
+  background: #f8f9fa;
   padding: 5rem 0;
   position: relative;
   width: 100%;
