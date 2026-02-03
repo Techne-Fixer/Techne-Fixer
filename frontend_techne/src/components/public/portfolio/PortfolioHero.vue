@@ -1,6 +1,6 @@
-<!-- src/components/public/HeroSection.vue -->
+<!-- src/components/public/portfolio/PortfolioHero.vue -->
 <template>
-  <section class="hero-section">
+  <section class="portfolio-hero">
     <!-- Floating particles -->
     <div class="particles">
       <div class="particle"></div>
@@ -16,14 +16,28 @@
     <div class="hero-main-content-area">
       <div class="hero-content-wrapper">
         <div class="hero-text-content">
-          <h1>Professional Repair Services For Your Electronics & Appliances</h1>
-          <p>Expert technicians specializing in Laptops, Printers, Washing Machines, Cellphones, CCTV, Solar Panels & Medical Equipment</p>
+          <h1>Our Portfolio</h1>
+          <p>Discover our successful projects and satisfied clients. Quality workmanship delivered on time, every time.</p>
+          <div class="stats-mini">
+            <div class="stat-item">
+              <span class="stat-number">150+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Satisfaction</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Available</span>
+            </div>
+          </div>
           <button class="hero-button">
-            Learn More <span class="arrow">&gt;</span>
+            View Projects <span class="arrow">&gt;</span>
           </button>
         </div>
         <div class="hero-illustration-placeholder">
-          <img :src="characterImage" alt="Kenji 'Spark' Tanaka, Electrical Engineer" class="hero-character-image" />
+          <PortfolioIllustration />
         </div>
       </div>
     </div>
@@ -31,19 +45,19 @@
 </template>
 
 <script setup>
-import characterImage from '@/assets/images/character.png';
+import PortfolioIllustration from '@/assets/svg/PortfolioIllustration.vue';
 </script>
 
 <style scoped>
 /* Hero Section Background */
-.hero-section {
+.portfolio-hero {
   background: linear-gradient(135deg, #0a1f1a 0%, #0d2820 50%, #0f2d24 100%);
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 100%; /* Prevent overflow */
+  width: 100%;
 }
 
 /* Floating particles */
@@ -145,10 +159,9 @@ import characterImage from '@/assets/images/character.png';
   align-items: center;
   padding: 3rem 0;
   position: relative;
-  width: 100%; /* Prevent overflow */
+  width: 100%;
 }
 
-/* Content Wrapper for Hero Section (Constrained Width) */
 .hero-content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -158,7 +171,7 @@ import characterImage from '@/assets/images/character.png';
   justify-content: space-between;
   gap: 3rem;
   width: 100%;
-  box-sizing: border-box; /* Include padding in width calculation */
+  box-sizing: border-box;
 }
 
 .hero-text-content {
@@ -174,7 +187,7 @@ import characterImage from '@/assets/images/character.png';
   margin-bottom: 0.5em;
   font-weight: 800;
   color: #ffffff;
-  word-wrap: break-word; /* Prevent text overflow */
+  word-wrap: break-word;
 }
 
 .hero-text-content p {
@@ -182,7 +195,34 @@ import characterImage from '@/assets/images/character.png';
   line-height: 1.5;
   margin-bottom: 2em;
   color: rgba(255, 255, 255, 0.85);
-  word-wrap: break-word; /* Prevent text overflow */
+  word-wrap: break-word;
+}
+
+/* Mini Stats */
+.stats-mini {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #00ff88;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .hero-button {
@@ -223,13 +263,7 @@ import characterImage from '@/assets/images/character.png';
   align-items: center;
   position: relative;
   overflow: hidden;
-  max-width: 100%; /* Prevent overflow */
-}
-
-.hero-character-image {
   max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* Responsive adjustments */
@@ -255,14 +289,13 @@ import characterImage from '@/assets/images/character.png';
     text-align: center;
   }
   
+  .stats-mini {
+    justify-content: center;
+  }
+  
   .hero-illustration-placeholder {
     width: 100%;
     margin-top: 0;
-  }
-  
-  .hero-character-image {
-    max-height: 300px;
-    width: auto;
   }
   
   .hero-text-content h1 {
@@ -287,13 +320,21 @@ import characterImage from '@/assets/images/character.png';
     font-size: 0.95em;
   }
   
+  .stats-mini {
+    gap: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
   .hero-button {
     padding: 12px 24px;
     font-size: 1em;
-  }
-  
-  .hero-character-image {
-    max-height: 250px;
   }
 }
 </style>

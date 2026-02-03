@@ -1,23 +1,45 @@
 <!-- src/App.vue -->
 <template>
   <PublicLayout>
-    <!-- For now, we'll embed a placeholder page directly. -->
-    <!-- Later, this will be replaced by <router-view /> -->
-    <HomePage />
+    <router-view />
   </PublicLayout>
 </template>
 
 <script setup>
 import PublicLayout from '@/layouts/PublicLayout.vue';
-import HomePage from '@/views/HomePage.vue'; // We'll create this next
 </script>
 
 <style>
-/* Global styles can go here or in src/styles/main.css */
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Ensure router-view takes full width */
+.router-view {
+  width: 100%;
 }
 </style>
