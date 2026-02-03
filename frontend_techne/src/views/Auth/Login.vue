@@ -119,11 +119,11 @@ const handleLogin = async () => {
 
 <style scoped>
 .login-page {
-  min-height: calc(100vh - 70px); /* Account for navbar height */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 6rem 1rem 2rem; /* Top padding accounts for fixed navbar */
   position: relative;
 }
 
@@ -350,6 +350,10 @@ const handleLogin = async () => {
 
 /* Responsive */
 @media (max-width: 480px) {
+  .login-page {
+    padding: 5rem 1rem 2rem; /* Less top padding on mobile */
+  }
+
   .login-card {
     padding: 2rem 1.5rem;
   }
