@@ -14,7 +14,7 @@
       <router-link to="/services" class="nav-button">Services</router-link>
       <router-link to="/portfolio" class="nav-button">Portfolio</router-link>
       <router-link to="/about" class="nav-button">About</router-link>
-      <router-link to="/contact" class="nav-button">Contact</router-link>
+      <a @click="scrollToContact" class="nav-button">Contact</a>
 
       <!-- Public/Guest Links -->
       <template v-if="!isAuthenticated">
@@ -65,10 +65,10 @@
           <span class="link-icon">ℹ️</span>
           About
         </router-link>
-        <router-link to="/contact" class="mobile-nav-link" @click="closeMobileMenu">
+        <a @click="scrollToContactMobile" class="mobile-nav-link mobile-nav-link-clickable">
           <span class="link-icon">📧</span>
           Contact
-        </router-link>
+        </a>
 
         <!-- Mobile Auth Buttons -->
         <template v-if="!isAuthenticated">
@@ -113,6 +113,31 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
   document.body.style.overflow = '';
+};
+
+const scrollToContact = () => {
+  const contactSection = document.querySelector('.contact-section, #contact, [id*="contact"]');
+  
+  if (contactSection) {
+    const navbarHeight = 92; // Adjust based on your navbar height
+    const elementPosition = contactSection.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  } else {
+    console.warn('Contact section not found on this page');
+  }
+};
+
+
+const scrollToContactMobile = () => {
+  closeMobileMenu();
+  setTimeout(() => {
+    scrollToContact();
+  }, 300); // Wait for menu to close
 };
 
 onMounted(() => {

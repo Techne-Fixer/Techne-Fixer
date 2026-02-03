@@ -23,7 +23,7 @@
           </button>
         </div>
         <div class="hero-illustration-placeholder">
-          <ServicesIllustration />
+          <img :src="characterImage" alt="Kenji 'Spark' Tanaka, Electrical Engineer" class="hero-character-image" />
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import ServicesIllustration from '@/assets/svg/ServicesIllustration.vue';
+import characterImage from '@/assets/images/service.png';
 </script>
 
 <style scoped>
@@ -223,6 +223,12 @@ import ServicesIllustration from '@/assets/svg/ServicesIllustration.vue';
   position: relative;
   overflow: hidden;
   max-width: 100%;
+}
+
+.hero-character-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Responsive adjustments */
