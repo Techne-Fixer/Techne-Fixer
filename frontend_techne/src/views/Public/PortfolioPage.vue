@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import HeroSection from '@/components/public/HeroSection.vue'; // <--- Import the new component
+import HeroSection from '@/components/public/portfolio/PortfolioHero.vue'; // <--- Import the new component
 import PortfolioSection from '@/components/public/portfolio/PortfolioSection.vue'; // <--- Import the new component
 import ContactUsSection from '@/components/public/ContactUsSection.vue'; // <--- Import the new component
 </script>
