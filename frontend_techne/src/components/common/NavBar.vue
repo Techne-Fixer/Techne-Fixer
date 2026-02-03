@@ -1,6 +1,6 @@
-<!-- DEBUG VERSION - src/components/common/Navbar.vue -->
+<!-- src/components/common/Navbar.vue -->
 <template>
-  <nav class="app-navbar" :class="{ 'scrolled': isScrolled }">
+  <nav class="app-navbar" :class="{ 'scrolled': isScrolled, 'auth-page': isAuthPage }">
     <div class="navbar-brand">
       <router-link to="/">
         <img :src="logo" alt="Techne-Fixer Logo" class="app-logo" />
@@ -87,13 +87,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import logo from '@/assets/images/logo.png';
 
+const route = useRoute();
 const isAuthenticated = false;
-const isManager = false;
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
+
+// Check if current page is an auth page (login/register)
+const isAuthPage = computed(() => {
+  return route.path === '/login' || route.path === '/register';
+});
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50;
@@ -119,7 +125,7 @@ const scrollToContact = () => {
   const contactSection = document.querySelector('.contact-section, #contact, [id*="contact"]');
   
   if (contactSection) {
-    const navbarHeight = 92; // Adjust based on your navbar height
+    const navbarHeight = 92;
     const elementPosition = contactSection.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
 
@@ -132,13 +138,17 @@ const scrollToContact = () => {
   }
 };
 
-
 const scrollToContactMobile = () => {
   closeMobileMenu();
   setTimeout(() => {
     scrollToContact();
-  }, 300); // Wait for menu to close
+  }, 300);
 };
+
+// Close mobile menu when route changes
+watch(() => route.path, () => {
+  closeMobileMenu();
+});
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
@@ -148,10 +158,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
   document.body.style.overflow = '';
 });
-
-const logout = () => {
-  console.log('Logout action (UI only)');
-};
 </script>
 
 <style scoped>
@@ -171,8 +177,9 @@ const logout = () => {
   transition: all 0.3s ease;
 }
 
-/* Navbar when scrolled */
-.app-navbar.scrolled {
+/* Navbar when scrolled OR on auth pages */
+.app-navbar.scrolled,
+.app-navbar.auth-page {
   background-color: rgba(10, 31, 26, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -220,6 +227,7 @@ const logout = () => {
   text-decoration: none;
   font-weight: 500;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .navbar-links .nav-button:hover {
@@ -290,7 +298,7 @@ const logout = () => {
   background-color: white;
   transition: all 0.3s ease;
   border-radius: 2px;
-  pointer-events: none; /* Lines shouldn't block clicks */
+  pointer-events: none;
 }
 
 .hamburger-line.open:nth-child(1) {
@@ -390,6 +398,7 @@ const logout = () => {
   font-weight: 500;
   transition: all 0.3s ease;
   border-left: 3px solid transparent;
+  cursor: pointer;
 }
 
 .mobile-nav-link:hover,
