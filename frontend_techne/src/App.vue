@@ -20,6 +20,7 @@ import PublicLayout from '@/layouts/PublicLayout.vue';
 html {
   width: 100%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -41,5 +42,15 @@ body {
 /* Ensure router-view takes full width */
 .router-view {
   width: 100%;
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+}
+
+/* Remove default link styles */
+a {
+  color: inherit;
 }
 </style>

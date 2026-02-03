@@ -1,4 +1,3 @@
-<!-- src/components/public/portfolio/PortfolioHero.vue -->
 <template>
   <section class="portfolio-hero">
     <!-- Floating particles -->
@@ -37,7 +36,7 @@
           </button>
         </div>
         <div class="hero-illustration-placeholder">
-          <PortfolioIllustration />
+          <img :src="characterImage" alt="Kenji 'Spark' Tanaka, Electrical Engineer" class="hero-character-image" />
         </div>
       </div>
     </div>
@@ -45,7 +44,7 @@
 </template>
 
 <script setup>
-import PortfolioIllustration from '@/assets/svg/PortfolioIllustration.vue';
+import characterImage from '@/assets/images/portfolio.png';
 </script>
 
 <style scoped>
@@ -198,6 +197,12 @@ import PortfolioIllustration from '@/assets/svg/PortfolioIllustration.vue';
   word-wrap: break-word;
 }
 
+.hero-character-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Mini Stats */
 .stats-mini {
   display: flex;
@@ -297,6 +302,11 @@ import PortfolioIllustration from '@/assets/svg/PortfolioIllustration.vue';
     width: 100%;
     margin-top: 0;
   }
+
+  .hero-character-image {
+    max-height: 300px;
+    width: auto;
+  }
   
   .hero-text-content h1 {
     font-size: 2.5em;
@@ -335,6 +345,10 @@ import PortfolioIllustration from '@/assets/svg/PortfolioIllustration.vue';
   .hero-button {
     padding: 12px 24px;
     font-size: 1em;
+  }
+
+  .hero-character-image {
+    max-height: 250px;
   }
 }
 </style>
