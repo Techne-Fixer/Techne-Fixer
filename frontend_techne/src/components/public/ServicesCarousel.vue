@@ -32,7 +32,7 @@
               class="service-card"
               :style="cardStyle"
             >
-              <BaseCard variant="elevated" hoverable padding="large">
+              <BaseCard variant="elevated" hoverable padding="none">
                 <div class="card-content">
                   <div class="icon-wrapper" :style="{ backgroundColor: service.color }">
                     <span class="service-icon">{{ service.icon }}</span>
@@ -260,6 +260,8 @@ onUnmounted(() => {
   overflow: hidden;
   flex: 1;
   touch-action: pan-y;
+  padding: 1rem 0;
+  margin: -1rem 0;
 }
 
 .carousel-track {
@@ -272,18 +274,24 @@ onUnmounted(() => {
   padding: 0 0.75rem;
   box-sizing: border-box;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card :deep(.base-card) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-content {
   text-align: center;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.5rem;
-  min-height: 320px;
-  max-height: 380px;
+  padding: 2rem 1.5rem;
 }
 
 .icon-wrapper {
@@ -312,7 +320,6 @@ onUnmounted(() => {
   color: #1a1a1a;
   margin-bottom: 0.75rem;
   word-wrap: break-word;
-  flex-shrink: 0;
 }
 
 .card-content p {
@@ -320,28 +327,7 @@ onUnmounted(() => {
   color: #666;
   line-height: 1.6;
   word-wrap: break-word;
-  overflow-y: auto;
-  overflow-x: hidden;
   flex: 1;
-  padding-right: 0.5rem;
-}
-
-.card-content p::-webkit-scrollbar {
-  width: 4px;
-}
-
-.card-content p::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.card-content p::-webkit-scrollbar-thumb {
-  background: #00ff88;
-  border-radius: 10px;
-}
-
-.card-content p::-webkit-scrollbar-thumb:hover {
-  background: #00dd77;
 }
 
 .carousel-btn {
@@ -452,8 +438,6 @@ onUnmounted(() => {
   
   .card-content {
     padding: 1.5rem 1rem;
-    min-height: 280px;
-    max-height: 340px;
   }
   
   .icon-wrapper {
@@ -473,57 +457,7 @@ onUnmounted(() => {
   
   .card-content p {
     font-size: 0.9rem;
-    padding-right: 0.25rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .services-section {
-    padding: 2.5rem 0;
-  }
-  
-  .services-container {
-    padding: 0 0.75rem;
-  }
-  
-  .section-header h2 {
-    font-size: 1.5rem;
-  }
-  
-  .carousel-wrapper {
-    gap: 0.25rem;
-  }
-  
-  .carousel-btn {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .service-card {
-    padding: 0 0.25rem;
-  }
-  
-  .card-content {
-    padding: 1.25rem 0.75rem;
-    min-height: 260px;
-    max-height: 320px;
-  }
-  
-  .icon-wrapper {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .service-icon {
-    font-size: 1.75rem;
-  }
-  
-  .card-content h3 {
-    font-size: 1.1rem;
-  }
-  
-  .card-content p {
-    font-size: 0.85rem;
+    line-height: 1.5;
   }
 }
 
