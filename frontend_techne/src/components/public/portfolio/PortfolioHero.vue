@@ -1,4 +1,3 @@
-<!-- src/components/public/portfolio/PortfolioHero.vue -->
 <template>
   <section class="portfolio-hero">
     <!-- Floating particles -->

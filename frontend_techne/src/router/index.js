@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
 
 // Import your page components
 import Home from '@/views/Public/HomePage.vue';
@@ -10,19 +10,19 @@ import Login from '@/views/Auth/Login.vue';
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/services',
-    name: 'Services',
-    component: Services
+    path: "/services",
+    name: "Services",
+    component: Services,
   },
   {
-    path: '/portfolio',
-    name: 'Portfolio',
-    component: Portfolio
+    path: "/portfolio",
+    name: "Portfolio",
+    component: Portfolio,
   },
   {
     path: '/about',
@@ -51,7 +51,7 @@ const router = createRouter({
     } else {
       return { top: 0 };
     }
-  }
+  },
 });
 
 export default router;
