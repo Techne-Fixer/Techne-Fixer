@@ -183,7 +183,7 @@ const handleSubmit = async () => {
 
 <style scoped>
 .contact-section {
-  background: #ffffff;
+  background: #f8f9fa;
   padding: 5rem 0;
   position: relative;
   width: 100%;
