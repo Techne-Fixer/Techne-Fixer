@@ -285,5 +285,9 @@ import characterImage from '@/assets/images/service.png';
     padding: 12px 24px;
     font-size: 1em;
   }
+
+  .hero-character-image {
+    max-height: 250px;
+  }
 }
 </style>
