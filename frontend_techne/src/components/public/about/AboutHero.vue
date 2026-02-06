@@ -44,7 +44,7 @@
           </button>
         </div>
         <div class="hero-illustration-placeholder">
-          <AboutIllustration />
+          <img :src="characterImage" alt="Kenji 'Spark' Tanaka, Electrical Engineer" class="hero-character-image" />
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import AboutIllustration from '@/assets/svg/AboutIllustration.vue';
+import characterImage from '@/assets/images/about.png';
 </script>
 
 <style scoped>
@@ -205,6 +205,12 @@ import AboutIllustration from '@/assets/svg/AboutIllustration.vue';
   word-wrap: break-word;
 }
 
+.hero-character-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Timeline Badge */
 .timeline-badge {
   display: inline-flex;
@@ -346,6 +352,11 @@ import AboutIllustration from '@/assets/svg/AboutIllustration.vue';
     width: 100%;
     margin-top: 0;
   }
+
+  .hero-character-image {
+    max-height: 300px;
+    width: auto;
+  }
   
   .hero-text-content h1 {
     font-size: 2.5em;
@@ -388,6 +399,10 @@ import AboutIllustration from '@/assets/svg/AboutIllustration.vue';
   .hero-button {
     padding: 12px 24px;
     font-size: 1em;
+  }
+
+  .hero-character-image {
+    max-height: 250px;
   }
 }
 </style>
