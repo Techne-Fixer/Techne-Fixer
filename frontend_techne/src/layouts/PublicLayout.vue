@@ -14,7 +14,7 @@
           <div class="footer-brand">
             <img :src="logo" alt="Techne-Fixer Logo" class="footer-logo" />
             <h3>Techne-Fixer</h3>
-            <p>Professional repair, installation, and maintenance services for all your technical needs.</p>
+            <p>Professional repair services for electronics and appliances. Quality workmanship, reliable service.</p>
           </div>
 
           <div class="footer-links">
@@ -28,25 +28,21 @@
             </div>
 
             <div class="footer-column">
-              <h4>Services</h4>
-              <a href="#">Repair Services</a>
-              <a href="#">Installation</a>
-              <a href="#">Maintenance</a>
-              <a href="#">Upgrades</a>
-              <a href="#">Consultation</a>
+              <h4>Our Services</h4>
+              <router-link to="/services">All Services</router-link>
+              <router-link to="/services#laptop">Laptop Repair</router-link>
+              <router-link to="/services#printer">Printer Repair</router-link>
+              <router-link to="/services#washing">Washing Machine</router-link>
+              <router-link to="/services#cctv">CCTV Installation</router-link>
             </div>
 
             <div class="footer-column">
-              <h4>Contact Info</h4>
-              <p>📧 info@techne-fixer.com</p>
-              <p>📞 +1 (555) 123-4567</p>
-              <p>📍 123 Tech Street, Manila, PH</p>
-              <div class="social-links">
-                <a href="#" aria-label="Facebook">📘</a>
-                <a href="#" aria-label="Twitter">🐦</a>
-                <a href="#" aria-label="Instagram">📷</a>
-                <a href="#" aria-label="LinkedIn">💼</a>
-              </div>
+              <h4>Support</h4>
+              <router-link to="/about">About Us</router-link>
+              <router-link to="/contact">Get a Quote</router-link>
+              <router-link to="/portfolio">Our Work</router-link>
+              <a href="#">FAQ</a>
+              <a href="#">Warranty Info</a>
             </div>
           </div>
         </div>
@@ -58,8 +54,6 @@
             <a href="#">Privacy Policy</a>
             <span class="divider">|</span>
             <a href="#">Terms of Service</a>
-            <span class="divider">|</span>
-            <a href="#">Cookie Policy</a>
           </div>
         </div>
       </div>
@@ -82,7 +76,6 @@ import logo from '@/assets/images/logo.png';
 
 .public-content {
   flex-grow: 1;
-  /* No padding-top - content flows under transparent navbar */
 }
 
 /* Footer Styles */
@@ -144,8 +137,7 @@ import logo from '@/assets/images/logo.png';
   margin-bottom: 1rem;
 }
 
-.footer-column a,
-.footer-column p {
+.footer-column a {
   display: block;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
@@ -158,28 +150,6 @@ import logo from '@/assets/images/logo.png';
 .footer-column a:hover {
   color: #00ff88;
   padding-left: 0.5rem;
-}
-
-.footer-column p {
-  margin-bottom: 0.75rem;
-}
-
-.social-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.social-links a {
-  font-size: 1.5rem;
-  padding: 0;
-  margin: 0;
-  transition: transform 0.3s ease;
-}
-
-.social-links a:hover {
-  transform: scale(1.2);
-  padding-left: 0;
 }
 
 .footer-bottom {
@@ -276,13 +246,8 @@ import logo from '@/assets/images/logo.png';
     font-size: 1rem;
   }
 
-  .footer-column a,
-  .footer-column p {
+  .footer-column a {
     font-size: 0.9rem;
-  }
-
-  .social-links a {
-    font-size: 1.3rem;
   }
 }
 </style>

@@ -1,12 +1,22 @@
 <!-- src/App.vue -->
 <template>
-  <PublicLayout>
+  <component :is="layout">
     <router-view />
-  </PublicLayout>
+  </component>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import PublicLayout from '@/layouts/PublicLayout.vue';
+import AdminLayout from '@/layouts/AdminLayout.vue';
+
+const route = useRoute();
+
+const layout = computed(() => {
+  // Check if current route path starts with /admin
+  return route.path.startsWith('/admin') ? AdminLayout : PublicLayout;
+});
 </script>
 
 <style>

@@ -1,3 +1,4 @@
+// router/index.js
 import { createRouter, createWebHistory } from "vue-router";
 
 // Import your page components
@@ -6,7 +7,10 @@ import Services from '@/views/Public/ServicesPage.vue';
 import Portfolio from '@/views/Public/PortfolioPage.vue';
 import About from '@/views/Public/AboutPage.vue';
 import Login from '@/views/Auth/Login.vue';
-// import Register from '@/views/Register.vue';
+
+// Admin components
+import Dashboard from "@/views/Manager/Dashboard.vue";
+import AdminServices from "@/views/Manager/WebsiteContent/Service/Index.vue";
 
 const routes = [
   {
@@ -29,17 +33,27 @@ const routes = [
     name: 'About',
     component: About
   },
-
   {
     path: '/login',
     name: 'Login',
     component: Login
   },
-//   {
-//     path: '/register',
-//     name: 'Register',
-//     component: Register
-//   }
+  
+  // Admin routes - NO layout wrapper here
+  {
+    path: '/admin',
+    redirect: '/admin/dashboard'
+  },
+  {
+    path: '/admin/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  },
+  {
+    path: '/admin/services',
+    name: 'AdminServices',
+    component: AdminServices
+  }
 ];
 
 const router = createRouter({
