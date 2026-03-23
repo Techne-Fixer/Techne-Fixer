@@ -1,4 +1,4 @@
-<!-- src/components/Auth/LoginForm.vue -->
+<!-- src/components/auth/LoginForm.vue -->
 <template>
   <div class="login-card">
     <!-- Logo -->
@@ -56,9 +56,13 @@
           <input type="checkbox" v-model="rememberMe" />
           <span>Remember me</span>
         </label>
-        <a href="#" class="forgot-link">Forgot password?</a>
+        <router-link to="/forgot-password" class="forgot-link">Forgot password?</router-link>
       </div>
 
+      <div v-if="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      
       <!-- Submit Button -->
       <button type="submit" class="submit-btn" :disabled="isLoading">
         <span v-if="!isLoading">Sign In</span>
@@ -70,7 +74,7 @@
 
       <!-- Sign Up Link -->
       <div class="signup-link">
-        Don't have an account? <router-link to="/register">Sign up</router-link>
+        Don't have an account? <router-link to="/auth/register">Sign up</router-link>
       </div>
     </form>
   </div>
@@ -79,9 +83,11 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 import logo from '@/assets/images/logo.png';
 
 const router = useRouter();
+const auth = useAuthStore();
 
 // Form state
 const email = ref('');
@@ -89,21 +95,19 @@ const password = ref('');
 const rememberMe = ref(false);
 const showPassword = ref(false);
 const isLoading = ref(false);
+const errorMessage = ref('');
 
 // Handle login
 const handleLogin = async () => {
   isLoading.value = true;
-  
-  try {
-    // TODO: Implement actual login logic
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
-    
-    // On success, redirect to dashboard
-    router.push('/dashboard');
-  } catch (error) {
-    console.error('Login failed:', error);
-    // TODO: Show error message
-  } finally {
+  errorMessage.value = '';
+
+  try{
+    await auth.login({email: email.value, password: password.value});
+    router.push('/admin/dashboard');
+  }catch(error){
+    errorMessage.value = error.response?.data?.message || 'Invalid Credentials. Please try again.';
+  }finally{
     isLoading.value = false;
   }
 };
@@ -287,6 +291,16 @@ const handleLogin = async () => {
   border-top-color: white;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
+}
+
+.error-message {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 @keyframes spin {

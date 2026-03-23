@@ -33,6 +33,36 @@
         <span class="nav-icon">💼</span>
         <span class="nav-text" v-if="!isCollapsed">Portfolio</span>
       </router-link>
+      
+      <router-link to="/admin/inquiry" class="nav-item">
+        <span class="nav-icon">💼</span>
+        <span class="nav-text" v-if="!isCollapsed">Inquiries</span>
+      </router-link>
+      
+      <router-link to="/admin/quotation" class="nav-item">
+        <span class="nav-icon">💼</span>
+        <span class="nav-text" v-if="!isCollapsed">Quotatiton</span>
+      </router-link>
+      
+      <router-link to="/admin/job-order" class="nav-item">
+        <span class="nav-icon">💼</span>
+        <span class="nav-text" v-if="!isCollapsed">Job Order</span>
+      </router-link>
+      
+      <router-link to="/admin/technician" class="nav-item">
+        <span class="nav-icon">💼</span>
+        <span class="nav-text" v-if="!isCollapsed">Technician</span>
+      </router-link>
+
+      <router-link to="/admin/customer" class="nav-item">
+        <span class="nav-icon">💼</span>
+        <span class="nav-text" v-if="!isCollapsed">Customer</span>
+      </router-link>
+
+      <router-link to="/admin/report" class="nav-item">
+        <span class="nav-icon">💼</span>
+        <span class="nav-text" v-if="!isCollapsed">Reports</span>
+      </router-link>
 
       <div class="nav-divider" v-if="!isCollapsed"></div>
 
@@ -51,17 +81,20 @@
 
 <script setup>
 import { ref } from 'vue';
+import {useAuthStore} from '@/stores/auth';
+import {useRouter} from 'vue-router';
 import logo from '@/assets/images/logo.png';
 
 const isCollapsed = ref(false);
-
+const auth = useAuthStore();
+const router = useRouter();
 const toggleSidebar = () => {
   isCollapsed.value = !isCollapsed.value;
 };
 
-const handleLogout = () => {
-  // Logout logic will go here
-  console.log('Logout clicked');
+const handleLogout = async () => {
+  await auth.logout();
+  router.push('/auth/login');
 };
 </script>
 
@@ -214,6 +247,7 @@ const handleLogout = () => {
 
 .logout-item {
   margin-top: auto;
+  cursor: pointer;
 }
 
 .logout-item:hover {

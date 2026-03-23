@@ -10,12 +10,14 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import PublicLayout from '@/layouts/PublicLayout.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
+import TechnicianLayout from '@/layouts/TechnicianLayout.vue';
 
 const route = useRoute();
 
 const layout = computed(() => {
-  // Check if current route path starts with /admin
-  return route.path.startsWith('/admin') ? AdminLayout : PublicLayout;
+  if (route.path.startsWith('/admin'))      return AdminLayout;
+  if (route.path.startsWith('/technician')) return TechnicianLayout;
+  return PublicLayout;
 });
 </script>
 
@@ -49,17 +51,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Ensure router-view takes full width */
 .router-view {
   width: 100%;
 }
 
-/* Remove default button styles */
 button {
   font-family: inherit;
 }
 
-/* Remove default link styles */
 a {
   color: inherit;
 }

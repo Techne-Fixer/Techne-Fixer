@@ -24,7 +24,7 @@
               <router-link to="/services">Services</router-link>
               <router-link to="/portfolio">Portfolio</router-link>
               <router-link to="/about">About Us</router-link>
-              <router-link to="/contact">Contact</router-link>
+              <a @click="scrollToContact" class="nav-button">Contact</a>
             </div>
 
             <div class="footer-column">
@@ -64,6 +64,24 @@
 <script setup>
 import Navbar from '@/components/common/NavBar.vue';
 import logo from '@/assets/images/logo.png';
+
+const scrollToContact = () => {
+  const contactSection = document.querySelector('.contact-section, #contact, [id*="contact"]');
+  
+  if (contactSection) {
+    const navbarHeight = 92;
+    const elementPosition = contactSection.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  } else {
+    console.warn('Contact section not found on this page');
+  }
+};
+
 </script>
 
 <style scoped>
